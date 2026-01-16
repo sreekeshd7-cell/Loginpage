@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modern Login</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        background-color: #f7f7f7;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .container {
+        display: flex;
+        width: 90%;
+        max-width: 1000px;
+        background: #fff;
+        border-radius: 20px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+      }
+      .left {
+        flex: 1;
+        padding: 60px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      h1 {
+        font-size: 32px;
+        font-weight: 600;
+        margin-bottom: 10px;
+        color: #222;
+      }
+      p {
+        color: #666;
+        font-size: 15px;
+        margin-bottom: 30px;
+      }
+      label {
+        font-size: 14px;
+        color: #333;
+        margin-bottom: 5px;
+        display: block;
+      }
+      input[type="email"],
+      input[type="password"] {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        font-size: 14px;
+        margin-bottom: 20px;
+      }
+      input:focus {
+        border-color: #7b4ae2;
+        box-shadow: 0 0 0 3px rgba(123, 74, 226, 0.2);
+        outline: none;
+      }
+      .signin-btn {
+        background-color: #7b4ae2;
+        color: white;
+        border: none;
+        padding: 12px;
+        border-radius: 10px;
+        font-size: 15px;
+        cursor: pointer;
+        width: 100%;
+      }
+      .signin-btn:hover {
+        background-color: #6938d5;
+      }
+      .google-btn {
+        width: 100%;
+        margin-top: 15px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        cursor: pointer;
+      }
+      .google-btn:hover {
+        background-color: #f8f8f8;
+      }
+      .signup-text {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 20px;
+        color: #666;
+      }
+      .signup-text a {
+        color: #7b4ae2;
+        text-decoration: none;
+        font-weight: 500;
+      }
+      .right {
+        flex: 1;
+        background-color: #ede7ff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      @media (max-width: 900px) {
+        .container {
+          flex-direction: column;
+        }
+        .right {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="left">
+        <h1>Welcome Back</h1>
+        <p>Login to continue exploring your personalized dashboard.</p>
+
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="Enter your email" />
+
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          placeholder="Enter your password"
+        />
+
+        <button class="signin-btn" onclick="login()">Sign In</button>
+
+        <div class="google-btn">
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg"
+            width="20"
+          />
+          Sign in with Google
+        </div>
+
+        <p class="signup-text">
+          Don't have an account?
+          <a href="signup.html">Sign up</a>
+        </p>
+      </div>
+
+      <div class="right">
+        <!-- Illustration removed, color block retained -->
+      </div>
+    </div>
+
+    <script>
+      function login() {
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        const storedUser = JSON.parse(localStorage.getItem("user"));
+
+        if (
+          storedUser &&
+          storedUser.email === email &&
+          storedUser.password === password
+        ) {
+          alert("Login successful!");
+          localStorage.setItem("userLoggedIn", "true");
+          window.location.href = "dashboard.html";
+        } else {
+          alert("Invalid credentials or account not found!");
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Account</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        background-color: #f7f7f7;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .container {
+        width: 90%;
+        max-width: 420px;
+        background: #fff;
+        border-radius: 15px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        padding: 40px;
+        animation: fadeIn 0.8s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      h1 {
+        font-size: 28px;
+        font-weight: 600;
+        color: #222;
+        text-align: center;
+        margin-bottom: 25px;
+      }
+
+      label {
+        font-size: 14px;
+        color: #333;
+        margin-bottom: 5px;
+        display: block;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="password"] {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        font-size: 14px;
+        margin-bottom: 20px;
+        transition: 0.3s;
+      }
+
+      input:focus {
+        border-color: #7b4ae2;
+        box-shadow: 0 0 0 3px rgba(123, 74, 226, 0.2);
+        outline: none;
+      }
+
+      .signup-btn {
+        background-color: #7b4ae2;
+        color: white;
+        border: none;
+        padding: 12px;
+        border-radius: 10px;
+        font-size: 15px;
+        cursor: pointer;
+        width: 100%;
+        transition: 0.3s;
+      }
+
+      .signup-btn:hover {
+        background-color: #6938d5;
+        transform: translateY(-2px);
+      }
+
+      .login-text {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 20px;
+        color: #666;
+      }
+
+      .login-text a {
+        color: #7b4ae2;
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      .login-text a:hover {
+        color: #5a3ed2;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Create Account</h1>
+
+      <label for="name">Full Name</label>
+      <input type="text" id="name" placeholder="Enter your full name" />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="Enter your email" />
+
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="Enter password" />
+
+      <label for="confirm">Confirm Password</label>
+      <input type="password" id="confirm" placeholder="Confirm password" />
+
+      <button class="signup-btn" onclick="signup()">Sign Up</button>
+
+      <p class="login-text">
+        Already have an account? <a href="index.html">Login</a>
+      </p>
+    </div>
+
+    <script>
+      function signup() {
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const confirm = document.getElementById("confirm").value;
+
+        if (!name || !email || !password || !confirm) {
+          alert("Please fill all fields!");
+          return;
+        }
+
+        if (password !== confirm) {
+          alert("Passwords do not match!");
+          return;
+        }
+
+        // Save user data in localStorage
+        const user = { name, email, password };
+        localStorage.setItem("user", JSON.stringify(user));
+
+        alert("Account created successfully! You can now log in.");
+        window.location.href = "index.html";
+      }
+    </script>
+  </body>
+</html>
